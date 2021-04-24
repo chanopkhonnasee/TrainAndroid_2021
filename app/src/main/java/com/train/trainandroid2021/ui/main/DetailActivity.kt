@@ -1,7 +1,11 @@
 package com.train.trainandroid2021.ui.main
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -34,9 +38,14 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun initEvent() {
-        detailListenner = DetailActivityListenner {
+        detailListenner = DetailActivityListenner ({
             onBackPressed()
-        }
+        },{
+            val browserIntent = Intent(
+            Intent.ACTION_VIEW,
+            Uri.parse(it))
+            startActivity(browserIntent)
+        })
     }
 
     private fun initViewModel() {
@@ -58,7 +67,8 @@ class DetailActivity : AppCompatActivity() {
         super.onBackPressed()
     }
 
-    inner class DetailActivityListenner(val clickListener: () -> Unit) {
+    inner class DetailActivityListenner(val clickListener: () -> Unit,val webListener: (url: String) -> Unit) {
         fun onClickBack() = clickListener()
+        fun onClickWeb(url: String) = webListener(url)
     }
 }

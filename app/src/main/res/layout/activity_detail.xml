@@ -35,7 +35,7 @@
                 android:id="@+id/ivNews"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@id/tvDetail"
+                android:onClick="@{() -> clickListener.onClickWeb(data.url)}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -53,8 +53,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_middle"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/tvDetail"
+                app:layout_constraintTop_toBottomOf="@id/ivNews"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="22 Apr 2021" />
 
@@ -68,11 +67,44 @@
                 android:maxLines="2"
                 android:padding="@dimen/margin_4"
                 android:text="@{data.title}"
-                android:textSize="@dimen/text_small"
+                android:textSize="@dimen/text_middle"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvDate"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="TITLE" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16"
+                android:layout_marginEnd="@dimen/margin_16"
+                android:layout_marginBottom="@dimen/margin_8"
+                android:padding="@dimen/margin_4"
+                android:text="@{data.description}"
+                android:textSize="@dimen/text_small"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/tvDetail"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Description" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvAuthor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16"
+                android:layout_marginEnd="@dimen/margin_16"
+                android:layout_marginBottom="@dimen/margin_8"
+                android:gravity="right"
+                android:maxLines="2"
+                android:padding="@dimen/margin_4"
+                android:text="@{data.author}"
+                android:textSize="@dimen/text_small"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvDescription"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="author : " />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
